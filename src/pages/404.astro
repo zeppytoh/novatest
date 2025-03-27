@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@layout/BaseLayout.astro";
+import { NotFound } from '@codemint/astro-ui';
 import Icon from "@ui/icons/Icon.astro";
 import Button from "@ui/Button.astro";
 import type { WithContext, Thing } from "schema-dts";
@@ -64,6 +65,8 @@ const schema: WithContext<Thing> = {
 ---
 
 <BaseLayout seo={seo} schema={schema}>
+  <NotFound variant="1" />
+
   <section
     class="grid min-h-full place-items-center px-6 pb-10 pt-32 sm:pt-48 lg:px-8"
   >
@@ -113,6 +116,7 @@ const schema: WithContext<Thing> = {
       <div class="mt-5 flex items-center justify-center">
         <Button id="go-back" variant="primary">{pageContent.goBackLabel}</Button
         >
+        <button class="btn btn-primary">Save</button>
       </div>
     </div>
   </section>

@@ -5,27 +5,50 @@ import Platform from "@megaMenu/Platform.astro";
 import Features from "@megaMenu/Features.astro";
 import Button from "@ui/Button.astro";
 import { navigationLinks } from "@utils/navigation";
+import logoBlue from "../../assets/images/logo-blue.png";
+import logoBlue2x from "../../assets/images/logo-blue@2x.png";
+import logoWhite from "../../assets/images/logo-white.png";
+import logoWhite2x from "../../assets/images/logo-white@2x.png";
+interface Props {
+  transparent?: boolean;
+}
 
 const currentPath = Astro.url.pathname;
 
 // Call-to-action configuration for the primary button
-const primaryCTA = { text: "Try Free", href: "https://github.com/mearashadowfax/DataNova" };
+const primaryCTA = { text: "繋がって", href: "https://japanccc.netlify.app" };
 ---
 
 <header
-  class="fixed start-1/2 top-5 z-50 mx-auto flex w-full max-w-sm -translate-x-1/2 transform flex-wrap rounded-2xl border-b border-slate-100 bg-white bg-linear-to-t/oklch from-teal-100 via-transparent to-white p-4 shadow-xs sm:max-w-xl md:max-w-4xl md:flex-nowrap md:justify-start lg:max-w-5xl xl:max-w-6xl xl:shadow-none xl:ring-teal-950/5 2xl:max-w-[81rem] 2xl:via-0%"
->
+  class="absolute inset-x-0 top-0 z-50"
+>  <!-- start navigation -->
+
   <nav
-    class="relative mx-auto w-full px-4 py-2 sm:px-6 lg:px-8 xl:flex xl:max-w-7xl xl:items-center xl:justify-between xl:gap-3 2xl:max-w-[85rem]"
+    class="flex items-center justify-between p-6 lg:px-8 xl:px-12 2xl:px-20 bg-white shadow-md"
   >
     <div class="flex items-center justify-between gap-x-1">
-      <a
-        class="dm-sans flex-none text-2xl font-light text-slate-400 focus:opacity-80 focus:outline-hidden"
-        href="/"
-        aria-label="DataNova Logo"
-        translate="no"
-        ><span class="font-semibold text-teal-700">Data</span>Nova</a
-      >
+      <!-- Logo section -->
+      <div class="w-[300ox] lg:w-1/6 mr-auto lg:mr-0">
+        <a href="/" class="inline-block">
+          <img
+            src={logoWhite.src}
+            alt="JCCC"
+            class="default-logo"
+            data-at2x={logoWhite2x.src}
+            width={logoWhite.width}
+            height={logoWhite.height}
+          />
+          <img
+            src={logoBlue.src}
+            alt="JCCC"
+            class="alt-logo"
+            data-at2x={logoBlue2x.src}
+            width={logoBlue.width}
+            height={logoBlue.height}
+          />
+
+        </a>
+      </div>
 
       <button
         type="button"
@@ -92,7 +115,7 @@ const primaryCTA = { text: "Try Free", href: "https://github.com/mearashadowfax/
                 }`}
                 aria-current={currentPath === "/" ? "page" : undefined}
               >
-                Home
+                トップページ
               </a>
 
               <Features />

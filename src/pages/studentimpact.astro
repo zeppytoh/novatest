@@ -1,0 +1,79 @@
+---
+import BannerSlider from "@/components/sections/BannerSlider.astro";
+import CTA from "@/components/sections/CTA.astro";
+import FeatureStaff from "@/components/sections/FeatureStaff.astro";
+import BaseLayout from "@/layout/Base.astro";
+import type { Thing, WithContext } from "schema-dts";
+
+// Data describing the "About" section content
+const aboutData = {
+  title: "DataNova,",
+  description:
+    "founded in 2018, is a leading provider of powerful analytics tools that transform your Excel workspace into a comprehensive analytics powerhouse, making data analysis accessible and actionable for businesses worldwide.",
+  statistics: [
+    {
+      label: "Industry Sectors Served",
+      value: "15+",
+    },
+    {
+      label: "Data Points Processed",
+      value: "Billions",
+    },
+    {
+      label: "Custom Reports Generated",
+      value: "500,000+",
+    },
+  ],
+};
+
+// Data describing the expertise section
+const expertiseData = {
+  title: "Our Expertise:",
+  expertise: [
+    {
+      title: "AI-Powered Insights:",
+      description:
+        "Uncover deep insights and predict trends with advanced AI algorithms for proactive decision-making.",
+    },
+    {
+      title: "Real-Time Data Visualization:",
+      description:
+        "Transform data into interactive visuals, tracking key metrics in real-time for actionable insights.",
+    },
+    {
+      title: "Predictive Analytics Engine:",
+      description:
+        "Leverage machine learning to forecast trends and identify opportunities, staying ahead of the curve.",
+    },
+  ],
+};
+
+// SEO metadata for the page
+const seo = {
+  title: "About DataNova",
+  description: "Learn more about DataNova, the analytics platform that transforms your Excel data with advanced insights and predictive models.",
+};
+
+// Schema.org metadata for SEO
+const schema: WithContext<Thing> = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "inLanguage": "en-US",
+  "@id": Astro.url.href,
+  "url": Astro.url.href,
+  "name": "About DataNova",
+  "description": "Get to know DataNova, the powerful analytics platform for Excel that enables businesses to make data-driven decisions quickly with no coding required.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": `${Astro.site}`,
+    "name": "DataNova",
+    "description": "DataNova Analytics Inc. provides advanced analytics for Excel to help businesses unlock actionable insights quickly with no coding required."
+  }
+};
+---
+
+<BaseLayout>
+  <BannerSlider />
+  <FeatureStaff />
+  <CTA />
+</BaseLayout>

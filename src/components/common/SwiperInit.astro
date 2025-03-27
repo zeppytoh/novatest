@@ -1,0 +1,61 @@
+---
+// src/components/common/SwiperInit.astro
+interface Props {
+  selector?: string; // CSS selector for Swiper elements
+  options?: Record<string, any>; // Default options for Swiper
+}
+
+const { 
+  selector = '.swiper',
+  options = {}
+} = Astro.props;
+---
+
+<script define:vars={{ selector, options }}>
+  import Swiper from "swiper";
+import { Autoplay, EffectFade, Keyboard, Navigation, Pagination } from "swiper/modules";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const swiperElements = document.querySelectorAll(selector);
+
+    swiperElements.forEach((swiperEl) => {
+      // Merge default options with data-slider-options if present
+      let elementOptions = { ...options };
+      
+      if (swiperEl.dataset.sliderOptions) {
+        try {
+          // Parse the options, replacing single quotes with double quotes
+          const dataOptions = JSON.parse(swiperEl.dataset.sliderOptions.replace(/'/g, '"'));
+          elementOptions = { ...elementOptions, ...dataOptions };
+        } catch (error) {
+          console.error('Error parsing Swiper options:', error);
+        }
+      }
+
+      // Initialize Swiper with modules
+      const swiper = new Swiper(swiperEl, {
+        modules: [Navigation, Pagination, Autoplay, EffectFade, Keyboard],
+        ...elementOptions
+      });
+
+      // Handle pagination progress if needed
+      if (swiperEl.dataset.swiperNumberPaginationProgress === "true") {
+        const progressEl = swiperEl.closest('.swiper-number-pagination-progress')?.querySelector(".swiper-progress");
+        const prevEl = swiperEl.closest('.swiper-number-pagination-progress')?.querySelector(".number-prev");
+        const nextEl = swiperEl.closest('.swiper-number-pagination-progress')?.querySelector(".number-next");
+
+        if (progressEl && prevEl && nextEl) {
+          // Set initial numbers
+          prevEl.textContent = `01`;
+          nextEl.textContent = `0${swiper.slides.length}`;
+
+          // Update progress on slide change
+          swiper.on("slideChange", () => {
+            const progress = ((swiper.realIndex + 1) / swiper.slides.length) * 100;
+            progressEl.style.width = `${progress}%`;
+          });
+        }
+      }
+    });
+  });
+</script>

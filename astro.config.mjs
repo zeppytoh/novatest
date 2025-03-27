@@ -1,18 +1,19 @@
 // @ts-check
-import { defineConfig } from "astro/config";
-import tailwindcss from "@tailwindcss/vite";
-import vercel from "@astrojs/vercel";
-import react from "@astrojs/react";
-import markdoc from "@astrojs/markdoc";
-import keystatic from "@keystatic/astro";
 import db from "@astrojs/db";
+import markdoc from "@astrojs/markdoc";
+import react from "@astrojs/react";
 import svelte from "@astrojs/svelte";
+import vercel from "@astrojs/vercel";
+import keystatic from "@keystatic/astro";
+import { defineConfig } from "astro/config";
+
+import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
   // The `site` property specifies the base URL for your site.
   // Be sure to update this to your own domain (e.g., "https://yourdomain.com") before deploying.
-  site: "https://data-nova.vercel.app",
+  site: "https://japanccc.netlify.app",
   prefetch: true,
   trailingSlash: "never",
   experimental: {
@@ -25,9 +26,7 @@ export default defineConfig({
     db(),
     svelte(),
   ],
-  vite: {
-    plugins: [tailwindcss()],
-  },
+  vite: {},
   output: "server",
-  adapter: vercel(),
+  adapter: netlify(),
 });
