@@ -22,7 +22,7 @@
     "@keystatic/core": "^0.5.43",
     "@tailwindcss/vite": "^4.0.12",
     "@types/animejs": "^3.1.13",
-    "@types/react": "^19.0.10",
+    "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
     "animejs": "^3.2.2",
     "astro": "5.5.5",
